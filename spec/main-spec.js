@@ -1,56 +1,63 @@
-describe('pos', function () {
-    var allItems, inputs, dateDigitToString;
+describe('getGrade', function () {
+    var grade;
+    var score;
 
     beforeEach(function () {
-        allItems = loadAllItems();
-        inputs = [
-            'ITEM000001',
-            'ITEM000001',
-            'ITEM000001',
-            'ITEM000001',
-            'ITEM000001',
-            'ITEM000003-2',
-            'ITEM000005',
-            'ITEM000005',
-            'ITEM000011',
-            'ITEM000005'
-        ];
-        dateDigitToString = function (num) {
-            return num < 10 ? '0' + num : num;
-        };
+        grade = [60, 80, 90];
+        score = [0, 55, 60, 70, 80, 85, 90, 95, 100];
     });
 
-    it('should print correct text', function () {
+    it('score =0 should return D', function () {
+        var result = getGrade(grade, score[0]);
+        var expectText = "D";
+        expect(result).toBe(expectText);
+    });
 
-        spyOn(console, 'log');
+    it('score =55 should return D', function () {
+        var result = getGrade(grade, score[1]);
+        var expectText = "D";
+        expect(result).toBe(expectText);
+    });
 
-        printInventory(inputs);
+    it('score =60 should return C', function () {
+        var result = getGrade(grade, score[2]);
+        var expectText = "C";
+        expect(result).toBe(expectText);
+    });
 
-        var currentDate = new Date(),
-            year = dateDigitToString(currentDate.getFullYear()),
-            month = dateDigitToString(currentDate.getMonth() + 1),
-            date = dateDigitToString(currentDate.getDate()),
-            hour = dateDigitToString(currentDate.getHours()),
-            minute = dateDigitToString(currentDate.getMinutes()),
-            second = dateDigitToString(currentDate.getSeconds()),
-            formattedDateString = year + '年' + month + '月' + date + '日 ' + hour + ':' + minute + ':' + second;
+    it('score =70 should return C', function () {
+        var result = getGrade(grade, score[3]);
+        var expectText = "C";
+        expect(result).toBe(expectText);
+    });
 
-        var expectText =
-            '***<没钱赚商店>购物清单***\n' +
-            '打印时间：' + formattedDateString + '\n' +
-            '----------------------\n' +
-            '名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n' +
-            '名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)\n' +
-            '名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)\n' +
-            '----------------------\n' +
-            '挥泪赠送商品：\n' +
-            '名称：雪碧，数量：1瓶\n' +
-            '名称：方便面，数量：1袋\n' +
-            '----------------------\n' +
-            '总计：51.00(元)\n' +
-            '节省：7.50(元)\n' +
-            '**********************';
+    it('score =80 should return B', function () {
+        var result = getGrade(grade, score[4]);
+        var expectText = "B";
+        expect(result).toBe(expectText);
+    });
 
-        expect(console.log).toHaveBeenCalledWith(expectText);
+    it('score =85 should return B', function () {
+        var result = getGrade(grade, score[5]);
+        var expectText = "B";
+        expect(result).toBe(expectText);
+    });
+
+    it('score =90 should return A', function () {
+        var result = getGrade(grade, score[6]);
+        var expectText = "A";
+        expect(result).toBe(expectText);
+    });
+
+    it('score =95 should return A', function () {
+        var result = getGrade(grade, score[7]);
+        var expectText = "A";
+        expect(result).toBe(expectText);
+    });
+
+    it('score =100 should return A', function () {
+        var result = getGrade(grade, score[8]);
+        var expectText = "A";
+        expect(result).toBe(expectText);
     });
 });

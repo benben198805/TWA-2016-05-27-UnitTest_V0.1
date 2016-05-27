@@ -1,9 +1,7 @@
-# POS Project v2
+# Score-grade test
 
-POS收银机 版本：v2
+Score-grade test 版本：v0.1
 
 ## 教学目标
 
 1. 熟悉jasmine unit test
-
-## 需求描述
